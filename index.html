@@ -1,1 +1,79 @@
-4
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile Number Location Finder</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Find Mobile Number Location</h1>
+        <form id="locationForm">
+            <input type="text" id="mobileNumber" placeholder="Enter Mobile Number" required>
+            <button type="submit">Find Location</button>
+        </form>
+        <p id="result"></p>
+    </div>
+
+    <script>
+        const form = document.getElementById('locationForm');
+        const result = document.getElementById('result');
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const mobileNumber = document.getElementById('mobileNumber').value;
+
+            // This is a placeholder for API integration
+            if (!mobileNumber.match(/^\d+$/)) {
+                result.textContent = 'Please enter a valid mobile number.';
+                return;
+            }
+
+            result.textContent = 'Fetching location...';
+
+            // Simulated response for demonstration
+            setTimeout(() => {
+                result.textContent = `Location data is not available. (Demo only, integrate API for actual data)`;
+            }, 2000);
+        });
+    </script>
+</body>
+</html>
+
