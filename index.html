@@ -3,115 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Free Fire UID Lookup</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 20px;
-            text-align: center;
-        }
-        .container {
-            max-width: 400px;
-            margin: auto;
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-        input[type="text"] {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-        button {
-            padding: 10px 20px;
-            background-color: #007bff;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #0056b3;
-        }
-        .result {
-            margin-top: 20px;
-            padding: 10px;
-            border-radius: 4px;
-        }
-        .result.success {
-            background-color: #e9ffe9;
-            border: 1px solid #b3ffb3;
-        }
-        .result.error {
-            background-color: #ffe9e9;
-            border: 1px solid #ffb3b3;
-        }
-    </style>
+    <title>KING KULDEEP</title>
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <link rel="stylesheet" href="index.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1060573121827875"
+     crossorigin="anonymous"></script>
 </head>
-<body>
-
-<div class="container">
-    <h2>Free Fire UID Lookup</h2>
-    <p>Enter your Free Fire UID to fetch account information.</p>
-    <form id="lookupForm">
-        <input type="text" id="uid" name="uid" placeholder="Enter Free Fire UID" required>
-        <button type="submit">Lookup</button>
-    </form>
-    <div class="result" id="result" style="display: none;">
-        <h3 id="resultTitle"></h3>
-        <p id="resultContent"></p>
-    </div>
-</div>
-
-<script>
-    document.getElementById("lookupForm").addEventListener("submit", function (e) {
-        e.preventDefault(); // Prevent form submission
-
-        const uid = document.getElementById("uid").value.trim();
-        const resultDiv = document.getElementById("result");
-        const resultTitle = document.getElementById("resultTitle");
-        const resultContent = document.getElementById("resultContent");
-
-        // Clear previous results
-        resultDiv.style.display = "none";
-        resultTitle.textContent = "";
-        resultContent.textContent = "";
-
-        if (uid === "") {
-            alert("Please enter a UID!");
-            return;
-        }
-
-        // Simulated database of UID data
-        const sampleData = {
-            "123456789": { name: "PlayerOne", level: 45, rank: "Heroic" },
-            "987654321": { name: "PlayerTwo", level: 30, rank: "Diamond" }
-        };
-
-        // Check if UID exists in the sample data
-        const accountInfo = sampleData[uid];
-
-        if (accountInfo) {
-            // UID found - display account information
-            resultDiv.className = "result success";
-            resultTitle.textContent = "Account Information";
-            resultContent.textContent = `Name: ${accountInfo.name}, Level: ${accountInfo.level}, Rank: ${accountInfo.rank}`;
-        } else {
-            // UID not found - display error message
-            resultDiv.className = "result error";
-            resultTitle.textContent = "No Account Found";
-            resultContent.textContent = "No account found for the provided UID. Please check the UID and try again.";
-        }
-
-        // Show the result container
-        resultDiv.style.display = "block";
-    });
-</script>
-
+<body> 
+        </div>
+        <div id="acc-info-lay">
+            <button class="back-btn-unv" id="acc-info-back-btn">Back</button>
+            <div id="acc-info-header">
+                <input placeholder="Game UID" type="number" id="info-uid-inp" required>
+                <button id="inf-sb-btn">Get Info</button>
+            </div>
+            <p style="font-size: 10px;">*Slow mode is On 1 request/Minutes</p>
+            <div id="id-info-data-div">
+                <div id="upper-info"></div>
+                <div id="cloth-img-div"></div>
+                <div id="lower-info"></div>
+                <div id="av-bn-div"></div>
+                <div id="eq-skin-div"></div>
+                <div id="bottom-info"></div>
+            </div>
+        </div>
+    <script type="module" src="config.js"></script>
+    <script type="module" src="main.js"></script>
 </body>
 </html>
