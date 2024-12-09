@@ -41,10 +41,15 @@
         .result {
             margin-top: 20px;
             padding: 10px;
+            border-radius: 4px;
+        }
+        .result.success {
             background-color: #e9ffe9;
             border: 1px solid #b3ffb3;
-            border-radius: 4px;
-            display: none;
+        }
+        .result.error {
+            background-color: #ffe9e9;
+            border: 1px solid #ffb3b3;
         }
     </style>
 </head>
@@ -57,39 +62,54 @@
         <input type="text" id="uid" name="uid" placeholder="Enter Free Fire UID" required>
         <button type="submit">Lookup</button>
     </form>
-    <div class="result" id="result">
-        <h3>Account Information</h3>
-        <p id="accountData"></p>
+    <div class="result" id="result" style="display: none;">
+        <h3 id="resultTitle"></h3>
+        <p id="resultContent"></p>
     </div>
 </div>
 
 <script>
     document.getElementById("lookupForm").addEventListener("submit", function (e) {
         e.preventDefault(); // Prevent form submission
-        const uid = document.getElementById("uid").value;
-        
-        if (uid.trim() === "") {
+
+        const uid = document.getElementById("uid").value.trim();
+        const resultDiv = document.getElementById("result");
+        const resultTitle = document.getElementById("resultTitle");
+        const resultContent = document.getElementById("resultContent");
+
+        // Clear previous results
+        resultDiv.style.display = "none";
+        resultTitle.textContent = "";
+        resultContent.textContent = "";
+
+        if (uid === "") {
             alert("Please enter a UID!");
             return;
         }
 
-        // Simulating fetching data from an API
+        // Simulated database of UID data
         const sampleData = {
             "123456789": { name: "PlayerOne", level: 45, rank: "Heroic" },
             "987654321": { name: "PlayerTwo", level: 30, rank: "Diamond" }
         };
 
+        // Check if UID exists in the sample data
         const accountInfo = sampleData[uid];
-        const resultDiv = document.getElementById("result");
-        const accountData = document.getElementById("accountData");
 
         if (accountInfo) {
-            accountData.textContent = `Name: ${accountInfo.name}, Level: ${accountInfo.level}, Rank: ${accountInfo.rank}`;
-            resultDiv.style.display = "block";
+            // UID found - display account information
+            resultDiv.className = "result success";
+            resultTitle.textContent = "Account Information";
+            resultContent.textContent = `Name: ${accountInfo.name}, Level: ${accountInfo.level}, Rank: ${accountInfo.rank}`;
         } else {
-            accountData.textContent = "No account found for the provided UID.";
-            resultDiv.style.display = "block";
+            // UID not found - display error message
+            resultDiv.className = "result error";
+            resultTitle.textContent = "No Account Found";
+            resultContent.textContent = "No account found for the provided UID. Please check the UID and try again.";
         }
+
+        // Show the result container
+        resultDiv.style.display = "block";
     });
 </script>
 
