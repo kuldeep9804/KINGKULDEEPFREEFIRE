@@ -3,77 +3,95 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mobile Number Location Finder</title>
+    <title>Free Fire UID Lookup</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f2f2f2;
+            background-color: #f4f4f4;
             margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
+            padding: 20px;
+            text-align: center;
         }
         .container {
-            background: #fff;
+            max-width: 400px;
+            margin: auto;
+            background: white;
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            text-align: center;
         }
         input[type="text"] {
             width: 100%;
             padding: 10px;
             margin: 10px 0;
             border: 1px solid #ccc;
-            border-radius: 5px;
+            border-radius: 4px;
         }
         button {
             padding: 10px 20px;
-            background-color: #007BFF;
-            color: #fff;
+            background-color: #007bff;
+            color: white;
             border: none;
-            border-radius: 5px;
+            border-radius: 4px;
             cursor: pointer;
         }
         button:hover {
             background-color: #0056b3;
         }
+        .result {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #e9ffe9;
+            border: 1px solid #b3ffb3;
+            border-radius: 4px;
+            display: none;
+        }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Find Mobile Number Location</h1>
-        <form id="locationForm">
-            <input type="text" id="mobileNumber" placeholder="Enter Mobile Number" required>
-            <button type="submit">Find Location</button>
-        </form>
-        <p id="result"></p>
+
+<div class="container">
+    <h2>Free Fire UID Lookup</h2>
+    <p>Enter your Free Fire UID to fetch account information.</p>
+    <form id="lookupForm">
+        <input type="text" id="uid" name="uid" placeholder="Enter Free Fire UID" required>
+        <button type="submit">Lookup</button>
+    </form>
+    <div class="result" id="result">
+        <h3>Account Information</h3>
+        <p id="accountData"></p>
     </div>
+</div>
 
-    <script>
-        const form = document.getElementById('locationForm');
-        const result = document.getElementById('result');
+<script>
+    document.getElementById("lookupForm").addEventListener("submit", function (e) {
+        e.preventDefault(); // Prevent form submission
+        const uid = document.getElementById("uid").value;
+        
+        if (uid.trim() === "") {
+            alert("Please enter a UID!");
+            return;
+        }
 
-        form.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const mobileNumber = document.getElementById('mobileNumber').value;
+        // Simulating fetching data from an API
+        const sampleData = {
+            "123456789": { name: "PlayerOne", level: 45, rank: "Heroic" },
+            "987654321": { name: "PlayerTwo", level: 30, rank: "Diamond" }
+        };
 
-            // This is a placeholder for API integration
-            if (!mobileNumber.match(/^\d+$/)) {
-                result.textContent = 'Please enter a valid mobile number.';
-                return;
-            }
+        const accountInfo = sampleData[uid];
+        const resultDiv = document.getElementById("result");
+        const accountData = document.getElementById("accountData");
 
-            result.textContent = 'Fetching location...';
+        if (accountInfo) {
+            accountData.textContent = `Name: ${accountInfo.name}, Level: ${accountInfo.level}, Rank: ${accountInfo.rank}`;
+            resultDiv.style.display = "block";
+        } else {
+            accountData.textContent = "No account found for the provided UID.";
+            resultDiv.style.display = "block";
+        }
+    });
+</script>
 
-            // Simulated response for demonstration
-            setTimeout(() => {
-                result.textContent = `Location data is not available. (Demo only, integrate API for actual data)`;
-            }, 2000);
-        });
-    </script>
 </body>
 </html>
-
